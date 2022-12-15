@@ -32,6 +32,7 @@ const addReposToCard = (repo) => {
         a.classList.add("repos");
         a.href = data.html_url;
         a.innerHTML = data.name;
+        a.target = "_blank"
         reposElement.append(a);
     });
     const span = document.createElement("span");
