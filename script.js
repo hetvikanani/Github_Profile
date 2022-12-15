@@ -7,15 +7,16 @@ const divCard = document.querySelector(".card");
 const createUserCard = (username) => {
     const cardUI = `
         <div>
-            <img src="${username.avatar_url}">
+            <img class="avatar" src="${username.avatar_url}">
         </div>
-        <div>
+        <div class="user-info">
             <h2>${username.name}</h2>
             <p>${username.bio}</p>
-            <ul>
-            <li>${username.followers}</li>
-            <li>${username.following}</li>
-            <li>${username.public_repos}</li>
+
+            <ul class="info">
+            <li>${username.followers}<strong>Followers</strong></li>
+            <li>${username.following}<strong>Following</strong></li>
+            <li>${username.public_repos}<strong>Repos</strong></li>
             </ul>
         </div>
 `;
@@ -36,5 +37,6 @@ form.addEventListener("submit", (e) => {
         getUser(inputValue);
         inputSearch.value = "";
     }
-
 });
+
+getUser("hetvikanani");
