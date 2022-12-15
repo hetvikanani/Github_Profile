@@ -18,16 +18,36 @@ const createUserCard = (username) => {
             <li>${username.following}<strong>Following</strong></li>
             <li>${username.public_repos}<strong>Repos</strong></li>
             </ul>
+            <h3>Repos:</h3>
+            <div id="repos"></div>
         </div>
 `;
     divCard.innerHTML = cardUI;
+};
 
+const addReposToCard = (repo) => {
+    const reposElement = document.getElementById("repos");
+    repo.forEach((data) => {
+        const a = document.createElement("a");
+        a.classList.add("repos");
+        a.href = data.html_url;
+        a.innerHTML = data.name;
+        reposElement.append(a);
+    });
+    const span = document.createElement("span");
+};
+
+const getRepos = async (user) => {
+    const res = await fetch(APIURL + user + "/repos");
+    const response = await res.json();
+    addReposToCard(response);
 };
 
 const getUser = async (user) => {
     const res = await fetch(APIURL + user);
     const response = await res.json();
     createUserCard(response);
+    getRepos(user);
 };
 
 form.addEventListener("submit", (e) => {
